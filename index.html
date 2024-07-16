@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Counters</title>
+    <style>
+        /* style css */
+        .counter {
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <p>Active Clients: <span id="active-clients-counter" class="counter">0</span></p>
+        <p>System Users: <span id="system-users-counter" class="counter">0</span></p>
+    </div>
+    <script>
+    
+        const activeClientsCount = 50; // replace this part with the your numbers
+        const systemUsersCount = 100;  // replace this part with the your numbers
+        
+        // this will make the counter to animate
+        function animateCounter(id, finalCount) {
+            let currentCount = 0;
+            const counterElement = document.getElementById(id);
+             const increment = Math.ceil(finalCount / 100);   //here you can add the speed at which you want it to move with
+            
+            const timer = setInterval(() => {
+                currentCount += increment;
+                counterElement.textContent = currentCount;
+                if (currentCount >= finalCount) {
+                    clearInterval(timer);
+                    counterElement.textContent = finalCount;
+                }
+            }, 20); // you can adjust the interval
+        }
+        
+        // this will make it that when you load or reload the page the counter starts counting
+        document.addEventListener('DOMContentLoaded', () => {
+            animateCounter('active-clients-counter', activeClientsCount);
+            animateCounter('system-users-counter', systemUsersCount);
+        });
+    </script>
+</body>
+</html>
